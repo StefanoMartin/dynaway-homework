@@ -4,6 +4,7 @@ import { IonicModule } from '@ionic/angular'
 import { HomePage } from './home.page'
 import { fakeAsync, tick } from '@angular/core/testing';
 import { AssetService } from '../shared/services/asset.service';
+import { AssetCardComponent } from './asset-card/asset-card.component';
 import { of, throwError } from 'rxjs';
 import { Asset } from '../shared/models/asset.model';
 
@@ -24,7 +25,7 @@ describe('HomePage', () => {
 
   beforeEach(waitForAsync(async () => {
     await TestBed.configureTestingModule({
-      declarations: [HomePage],
+      declarations: [HomePage, AssetCardComponent],
       imports: [IonicModule.forRoot()]
     }).compileComponents()
 
@@ -39,7 +40,7 @@ describe('HomePage', () => {
   })
 
   it('should display the assets if successful', fakeAsync(() => {
-    expect(component.assets).toHaveSize(0);
+    expect(component.assets).toHaveSize(6);
     expect(component.isToastOpen).toEqual(false);
 
     spyOn(service, 'getAll').and.returnValue(of({ ok: true, data: mockAsset }));
@@ -53,7 +54,7 @@ describe('HomePage', () => {
   }))
 
   it('should not display the assets if not successful', fakeAsync(() => {
-    expect(component.assets).toHaveSize(0);
+    expect(component.assets).toHaveSize(6);
     expect(component.isToastOpen).toEqual(false);
 
     spyOn(service, 'getAll').and.returnValue(throwError(() => new Error('Error')));

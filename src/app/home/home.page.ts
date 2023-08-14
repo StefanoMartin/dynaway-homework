@@ -9,16 +9,17 @@ import { catchError } from 'rxjs/operators';
   styleUrls: ['home.page.scss'],
 })
 export class HomePage {
-  assets: Asset[] = []
+  assets: (Asset|undefined)[] = new Array(6);
   isToastOpen = false;
 
   constructor(private assetService: AssetService) {}
 
   ionViewWillEnter(): void {
-    this.assets = []
+    this.assets = new Array(6);
     this.assetService.getAll().pipe(
       catchError(_error => {
         // console.log(error.message)
+        this.assets = []
         this.setToastOpen(true)
         return [];
       })
@@ -26,6 +27,7 @@ export class HomePage {
       if(output.ok){
         this.assets = output.data
       }else{
+        this.assets = []
         this.setToastOpen(true)
       }
     })
