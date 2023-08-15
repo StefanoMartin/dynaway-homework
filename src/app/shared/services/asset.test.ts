@@ -47,7 +47,15 @@ export const mockAssets: Asset[] = [{
 /*
   This is how would a response from the server look like
  */
-export const mockAssetHttpResponse: any = {
+export const mockAssetHttpResponse = {
   ok: true,
   data: mockAssets,
+}
+
+export const mockAssetHttpResponseId = (id: string) => {
+  const value = mockAssets.find((ma) => ma.id === id)
+  return {
+    ok: !!value,
+    data: value
+  }
 }

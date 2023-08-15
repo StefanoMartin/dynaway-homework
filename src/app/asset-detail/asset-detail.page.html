@@ -9,7 +9,54 @@
 
 <ion-content color="background">
   <div id="container">
-    <strong>A dummy page</strong>
-    <p>Asset details would be displayed here</p>
+    <ng-container *ngIf="loaded; else skeletonCard">
+      <ion-card>
+        <div *ngIf="asset" class="card-content-wrapper">
+          <ion-card-content>
+            <div class="metadata">
+              <ion-text color="medium">{{ asset.id | uppercase }} • {{ asset.type | uppercase }}</ion-text>
+            </div>
+    
+            <div class="title">
+              <ion-text color="dark">{{ asset.name }}</ion-text>
+            </div>
+    
+            <div class="detail">
+              <ion-icon name="location"></ion-icon>
+              <ion-text color="medium">{{ asset.locationId }} • {{ asset.locationName }}</ion-text>
+            </div>
+          </ion-card-content>
+          <ion-thumbnail *ngIf="asset.image">
+            <ion-img [src]="asset.image" alt="Asset thumbnail"></ion-img>
+          </ion-thumbnail>
+        </div>
+      </ion-card>
+    </ng-container>
+    
+    <ng-template #skeletonCard>
+      <ion-card>
+        <ion-card-content>
+          <div class="metadata">
+            <ion-skeleton-text [style.width]="skeletonWidths[0]" animated="true"></ion-skeleton-text>
+          </div>
+    
+          <div class="title">
+            <ion-skeleton-text class="title-skeleton" [style.width]="skeletonWidths[1]" animated="true"></ion-skeleton-text>
+          </div>
+    
+          <div class="detail">
+            <ion-icon name="location"></ion-icon>
+            <ion-skeleton-text [style.width]="skeletonWidths[2]" animated="true"></ion-skeleton-text>
+          </div>
+        </ion-card-content>
+      </ion-card>
+    </ng-template>
   </div>
+
+  <ion-toast
+    [isOpen]="error"
+    [message]="error"
+    [duration]="5000"
+    (didDismiss)="setToastOpenUndefined()"
+  ></ion-toast>
 </ion-content>
