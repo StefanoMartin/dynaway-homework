@@ -5,14 +5,12 @@
 /**
  * @type { import("protractor").Config }
  */
+
 exports.config = {
   allScriptsTimeout: 11000,
   specs: ['../src/features/**/*.feature'],
   capabilities: {
-    browserName: 'chrome',
-    "goog:chromeOptions": {
-      binary: "/mnt/c/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",
-    }
+    browserName: 'chrome'
   },
   directConnect: true,
   SELENIUM_PROMISE_MANAGER: false,
@@ -20,6 +18,6 @@ exports.config = {
   framework: 'custom',
   frameworkPath: require.resolve('protractor-cucumber-framework'),
   cucumberOpts: {
-    require: ['../src/steps/**/*.steps.ts'],
+    require: ['../src/steps/**/*.steps.js'],
   }
 };
