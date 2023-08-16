@@ -54,7 +54,7 @@
   </div>
 
   <ion-toast
-    [isOpen]="error"
+    [isOpen]="error!==undefined"
     [message]="error"
     [duration]="5000"
     (didDismiss)="setToastOpenUndefined()"

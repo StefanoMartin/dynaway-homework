@@ -27,9 +27,11 @@ export class AssetDetailPage implements OnInit {
 
   ionViewWillEnter(): void {
     this.asset = undefined
+    this.error = undefined
+    this.loaded = false
     this.assetService.getId(this.assetId).pipe(
       catchError(error => {
-        // console.log(error.message)
+        console.log(error.message)
         this.asset = undefined
         this.loaded = true
         this.error = error.message
