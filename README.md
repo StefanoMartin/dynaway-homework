@@ -1,3 +1,7 @@
+For task 5.
+* Run ```npm install``` to install the new dependencies
+* Run ```npm run e2e``` to run the tests
+
 # Dynaway Homework
 This is a small demo of an Angular & Ionic application containing a few tasks to complete as small coding challenges. You don't need to complete all the tasks, it is completely up to you how many of them you will work on and how much time you'll spend on them.
 
