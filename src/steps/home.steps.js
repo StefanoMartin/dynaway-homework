@@ -16,7 +16,13 @@ Then(/^it clicks on an assets$/, async () => {
   await div.click();
 })
 
-Then(/^it goes in the page of the asset$/, async () => {
+Then(/^it goes in the page of the asset ([A-Za-z0-9]+)$/, async (expectedId) => {
   const url = await browser.getCurrentUrl()
-  expect(url).to.equal("http://127.0.0.1:4200/asset/e7833d96");
+  expect(url).to.equal(`http://127.0.0.1:4200/asset/${expectedId}`);
+})
+
+Then(/^it see the string ([A-Za-z]+)$/, async (expectedString) => {
+  const div = element(by.tagName('ion-text'));
+  const text = await div.getText()
+  expect(text).contain(expectedString);
 })

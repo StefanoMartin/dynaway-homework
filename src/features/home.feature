@@ -7,4 +7,5 @@ Feature: Assets
    Scenario: User click on assets
       Given the user is on the home page
       Then it clicks on an assets
-      Then it goes in the page of the asset
+      Then it goes in the page of the asset e7833d96
+      Then it see the string FORKLIFT
